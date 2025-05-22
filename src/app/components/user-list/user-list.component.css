@@ -1,0 +1,19 @@
+/* div{
+    background-color: rgb(41, 241, 27);
+    width: 250px;
+    height: 150px;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px;
+} */
+
+.inactivo{
+    background-color: rgb(146, 155, 190);
+}
+
+.container{
+    display: flex;
+    justify-content: start;
+    width: 100%;
+    flex-wrap: wrap;
+}

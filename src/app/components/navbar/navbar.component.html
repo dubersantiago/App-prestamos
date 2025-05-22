@@ -1,0 +1,8 @@
+<nav>
+    <h1>{{titulo}}</h1>
+    <div class="buttons">
+        @for(link of links;track $index){
+            <a [routerLink]='link.name'>{{link.path}}</a>
+        }
+    </div>
+</nav>

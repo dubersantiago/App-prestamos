@@ -1,0 +1,11 @@
+<div class="header">
+    <h1>Usuarios</h1>
+    <button>Agregar usuario</button>
+</div>
+<div class="container">    
+    @for (user of usuarios; track $index) {
+        <app-user-item [usuario]="user"></app-user-item>
+    }
+</div>
+
+

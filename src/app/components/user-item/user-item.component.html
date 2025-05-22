@@ -1,0 +1,9 @@
+<div class="card" [ngClass]="{'inactivo': !usuario.activo}" >
+    <h2>{{usuario.firstname}} {{usuario.lastname}}</h2>
+    <p>edad: {{usuario.age}}</p>
+    <p>activo: {{usuario.activo}}</p>
+    <div class="buttons">
+        <button (click)="changeStatus(usuario)">cambiar estado</button>
+        <button>Editar usuario</button>
+    </div>
+</div>
