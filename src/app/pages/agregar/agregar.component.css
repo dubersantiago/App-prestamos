@@ -1,0 +1,32 @@
+.container{
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.inputs{
+    font-size: 2rem;
+    display: flex;
+    align-items: center;    
+    margin: 0 0 20px 0;
+
+    input{
+        outline: none;
+        border: none;
+        background-color: rgb(146, 155, 190);
+        padding: 5px;
+        color: white;
+        border-radius: 0.5rem;
+        font-size: 2rem;
+    }
+}
+
+.butonRegistar{
+    font-size: 2rem;
+}
+
+button:disabled{
+    background-color: rgb(42, 45, 54);
+}

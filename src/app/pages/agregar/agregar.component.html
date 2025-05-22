@@ -1,6 +1,21 @@
-<div>
-    <input type="text" placeholder="primer nombre" [(ngModel)]="fisrtname"/>
-    <input type="text" placeholder="segundo nombre" [(ngModel)]="lastname"/>
-    <input type="text" placeholder="edad" [(ngModel)]="age"/>
-    <button (click)="registerUser()">registar usuario</button>
-</div>
+<form [formGroup]="form" (ngSubmit)="submit()">    
+    <div class="container">
+        <div class="inputs">
+            <label for="firstname">Primer nombre:</label>
+            <input type="text" id="firstname" formControlName="firstname"/>
+        </div>
+        <div class="inputs">
+            <label for="lastname">Segundo nombre:</label>
+            <input type="text" id="lastname"  formControlName="lastname"/>
+        </div>
+        <div class="inputs">
+            <label for="age">Edad:</label>
+            <input type="number"  id="age" formControlName="age"/>
+        </div>
+        <div class="inputs">
+            <label for="state">Estado:</label>
+            <input type="checkbox" id="state"  formControlName="state"/>
+        </div>  
+        <button type="submit" class="butonRegistar" [disabled]="form.invalid">Registar Usuario</button>
+    </div>
+</form>

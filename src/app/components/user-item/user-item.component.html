@@ -1,9 +1,19 @@
-<div class="card" [ngClass]="{'inactivo': !usuario.activo}" >
-    <h2>{{usuario.firstname}} {{usuario.lastname}}</h2>
-    <p>edad: {{usuario.age}}</p>
-    <p>activo: {{usuario.activo}}</p>
+<div class="card" [ngClass]="{'inactivo': !usuario().activo}" >
+    <h2>{{usuario().firstname}} {{usuario().lastname}}</h2>
+    <p>edad: {{usuario().age}}</p>
+    <p>activo: {{usuario().activo}}</p>
+    @if(usuario().loan && usuario().loan!.length>0){
+        <hr>
+        <h3>prestamos :</h3>
+        @for(loan of usuario().loan;track loan.id){
+            <p><strong>Prestamo {{loan.id}}:</strong> {{loan.amount | currency}}</p>
+            <p>Fecha del prestamo: {{loan.startDate | date}}</p>
+            <p>Interes: {{loan.interesRate| percent}}</p>
+            <p>Estado: {{loan.status}}</p>
+        }
+    }
     <div class="buttons">
-        <button (click)="changeStatus(usuario)">cambiar estado</button>
-        <button>Editar usuario</button>
+        <button (click)="changeStatus(usuario())">cambiar estado</button>
+        <button (click)="editar(usuario().id)">Editar usuario</button>
     </div>
 </div>
