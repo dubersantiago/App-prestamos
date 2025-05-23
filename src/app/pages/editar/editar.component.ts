@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { UserService } from '../../services/UserService.service';
 import { ActivatedRoute } from '@angular/router';
 import { usuario } from '../../types';
@@ -11,18 +11,20 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './editar.component.css',
 })
 export class EditarComponent {
-  user:usuario | null=null; 
+  user=signal<usuario | null>(null); 
   route=inject(ActivatedRoute)
   userService=inject(UserService)
   param=this.route.snapshot.paramMap.get("id");
 
   id:number|null=null;
-  disable: boolean=true;
+  disable=computed(()=>{
+    this.user()?.age == null || this.user()?.firstname == '' || this.user()?.lastname == ''
+  });
 
   constructor(){
     if(this.param) {
       this.id=+this.param
-      this.user=this.userService.getuserbyid(this.id)
+      this.user.set(this.userService.getuserbyid(this.id))
     }
   }
   
