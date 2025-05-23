@@ -1,19 +1,38 @@
 <div class="card" [ngClass]="{'inactivo': !usuario().activo}" >
     <h2>{{usuario().firstname}} {{usuario().lastname}}</h2>
-    <p>edad: {{usuario().age}}</p>
-    <p>activo: {{usuario().activo}}</p>
+    <p>Edad: {{usuario().age}}</p>
+    <p>Estado: {{ (usuario().activo)?'Activo':'Inactivo'}}</p>
     @if(usuario().loan && usuario().loan!.length>0){
-        <hr>
         <h3>prestamos :</h3>
+        <hr>
         @for(loan of usuario().loan;track loan.id){
             <p><strong>Prestamo {{loan.id}}:</strong> {{loan.amount | currency}}</p>
             <p>Fecha del prestamo: {{loan.startDate | date}}</p>
             <p>Interes: {{loan.interesRate| percent}}</p>
             <p>Estado: {{loan.status}}</p>
+            @if(loan.status!=='pendiente' && loan.status!=='rechazado' && loan.status!=='pagado'){
+                <button (click)="openPaymentDialog(loan)">Pagar</button>
+            }
+            <hr>
         }
     }
     <div class="buttons">
-        <button (click)="changeStatus(usuario())">cambiar estado</button>
+        <button [disabled]="ChagestatusDisable(usuario())" (click)="changeStatus(usuario())">Cambiar estado</button>
         <button (click)="editar(usuario().id)">Editar usuario</button>
     </div>
 </div>
+
+<dialog #paymentModal>
+    <h2>Realizar pago</h2>
+    <div class="paymodal">
+        <label for="amount">Monto a pagar:</label>
+        <input type="number" id="amount" [(ngModel)]="amount" required>
+        @if(paysignal()){
+            <p>Debes poner un monto</p>
+        }
+        <div class="buttons">
+            <button (click)="payLoan()">Pagar</button>
+            <button (click)="closeDialog()">Salir</button>
+        </div>
+    </div>
+</dialog>

@@ -1,25 +1,36 @@
 
-@if(user()==null){
+@if(user==null){
     <h1>No se encontro usuario</h1>
 }@else{
-    <div class="container">
-        <h1>Informacion del usuario</h1>
-        <div class="inputs">
-            <label for="firstname">Nombre: </label>
-            <input type="text" id="firstname" [(ngModel)]="user()!.firstname">
+    <form [formGroup]="form" (ngSubmit)="updateUser()">
+        <div class="container">
+            <h1>Informacion del usuario</h1>
+            <div class="inputs">
+                <label for="firstname">Nombre: </label>
+                <input type="text" id="firstname" formControlName="firstname">
+                @if(!firstnamecontrol()){
+                    <p>El nombre debe tener mas de 4 digitos</p>
+                }
+            </div>
+            <div class="inputs">
+                <label for="lastname">Apellido: </label>
+                <input type="text" id="lastname" formControlName="lastname">
+                @if(!lastnamenamecontrol()){
+                    <p>El apellido debe tener mas de 4 digitos</p>
+                }
+            </div>
+            <div class="inputs">
+                <label for="age">Edad: </label>
+                <input type="number" id="age" formControlName="age">
+                @if(!agecontrol()){
+                    <p>Debes ser mayor a 18 años</p>
+                }
+            </div>
+            <div class="inputs">
+                <label for="status">Estado: </label>
+                <input type="checkbox" id="status" formControlName="state">
+            </div>
+            <button type="submit" [disabled]="disable()">Actualizar</button>
         </div>
-        <div class="inputs">
-            <label for="lastname">Apellido: </label>
-            <input type="text" id="lastname" [(ngModel)]="user()!.lastname">
-        </div>
-        <div class="inputs">
-            <label for="age">Edad: </label>
-            <input type="number" id="age" [(ngModel)]="user()!.age">
-        </div>
-        <div class="inputs">
-            <label for="status">Estado: </label>
-            <input type="checkbox" id="status" [(ngModel)]="user()!.activo">
-        </div>
-        <button [disabled]="disable()">Actualizar</button>
-    </div>
+    </form>
 }

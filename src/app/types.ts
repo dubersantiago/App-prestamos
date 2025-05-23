@@ -17,4 +17,4 @@ export interface loan{
     status:loanStatus
 }
 
-export type loanStatus='pendinete'|'aprovado'|'rechazado'|'pagado'
+export type loanStatus='pendiente'|'aprovado'|'rechazado'|'pagado'

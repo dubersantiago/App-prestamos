@@ -39,7 +39,36 @@ export class UserService {
       firstname:"juan",
       lastname:"perez",
       age:20,
-      activo:false
+      activo:true,
+      loan:[
+        {
+          id:1,
+          amount:9000000,
+          interesRate:0.56,
+          term:6,
+          startDate: new Date("2023-02-01"),
+          endDate:new Date("2023-08-01"),
+          status:'rechazado'
+        },
+        {
+          id:2,
+          amount:15000000,
+          interesRate:0.7,
+          term:8,
+          startDate: new Date("2023-09-01"),
+          endDate:new Date("2024-03-06"),
+          status:'aprovado'
+        },
+        {
+          id:3,
+          amount:45000000,
+          interesRate:0.7,
+          term:8,
+          startDate: new Date("2023-09-01"),
+          endDate:new Date("2024-03-06"),
+          status:'pagado'
+        }
+      ]
     },
     {
       id:3,
@@ -50,7 +79,7 @@ export class UserService {
     },
   ];
 
-  registerUser(firstname:string,lastname:string,age:number,status:boolean){
+  registerUser(firstname:string,lastname:string,age:number,status:boolean):void{
       const NewUser:usuario={
         id:this.usuarios.length+1,
         firstname:firstname,
@@ -61,6 +90,10 @@ export class UserService {
       this.usuarios.push(NewUser);
   }
 
+  updateUser(usuario:usuario):void{
+    const index=this.usuarios.findIndex((u)=>u.id===usuario.id)
+    if(index!==-1) this.usuarios[index]=usuario
+  }
 
   getUser():usuario[]{
     return [...this.usuarios]

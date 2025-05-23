@@ -8,6 +8,16 @@ button{
     background-color: #3555A4;
     color: white;
     border: none;
-    padding: .3rem;
+    padding: .5rem;
     border-radius: 10px;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=number] { 
+    -moz-appearance:textfield; 
 }
